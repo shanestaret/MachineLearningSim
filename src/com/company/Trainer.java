@@ -12,12 +12,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class Driver extends Application {
+public class Trainer extends Application {
     Stage mainWindow; //the literal frame that pops up
     Scene mainMenuUI, gameUI, explanationUI; //the different screens that we can get to within our "Stage" or frame
     Button playButton, explanationButton, playAgainButton, gameReturnToMenuButton, explanationReturnToMenuButton; //button that user can interact with
