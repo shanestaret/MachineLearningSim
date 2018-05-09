@@ -25,7 +25,7 @@ public class SortedABPriQ<T> implements PriQueueInterface<T>
   protected int numElements = 0;    // number of elements in this priority queue
 
   protected Comparator<T> comp;
-  protected List<T> indices = new ArrayList<>();
+  protected List<T> indices = new ArrayList<>(); //List that holds all legal moves made so far
 
   public SortedABPriQ() 
   // Precondition: T implements Comparable
@@ -128,6 +128,7 @@ public class SortedABPriQ<T> implements PriQueueInterface<T>
     return temp;
   }
 
+  //returns array to legal class as this holds all of the legal moves
   public List<T> returnQueue() {
       indices = Arrays.asList(elements);
       return indices;
