@@ -19,16 +19,26 @@ import java.util.concurrent.TimeUnit;
 public class Trainer extends Application {
     Stage mainWindow; //the literal frame that pops up
     Scene mainMenuUI, gameUI, explanationUI; //the different screens that we can get to within our "Stage" or frame
-    Button playButton, explanationButton, playAgainButton, gameReturnToMenuButton, explanationReturnToMenuButton; //button that user can interact with
+    Button playButton, explanationButton, playAgainButton, gameReturnToMenuButton, explanationReturnToMenuButton; //buttons that user can interact with
     Label explanation1 = new Label("Essentially, this program teaches the computer to put dots in a grid order without overlapping.");
-    Label explanation2 = new Label("It might take a while, but it learns as it goes.");
-    Label movesMade = new Label("");
-    ArrayUnboundedQueue<Integer> allMoves = new ArrayUnboundedQueue<>(); //holds all previous moves for the game
-    SortedABPriQ<Integer> previousSuccesses = new SortedABPriQ<>(); //holds all previous moves that were successful
+    Label explanation2 = new Label("It also does so in a specific order by the very end. It might take many games, but it learns as it goes.");
+    Label movesMade = new Label(""); //label that will hold the moves that were made by the computer when placing dots. "0" corresponds to the top left, "1" corresponds to the center left, "2" corresponds to the bottom left, "3" corresponds to the center top and so on.
+    ArrayUnboundedQueue<Integer> allMoves = new ArrayUnboundedQueue<>(); //queue that holds all previous moves for the game, no matter whether they were successful or not; print them out by FIFO standards
+    
+    //priority queue that holds all previous moves that were successful, causing the computer to always do those moves again;
+    //the nature of the priority queue causes the computer to always put the dot on the screen in the same way after figuring out how to put all 9 dots in the individual grids without duplicates.
+    SortedABPriQ<Integer> previousSuccesses = new SortedABPriQ<>();
+    
+    //list that is a copy of the "previousSuccesses" priority queue;
+    //used because we can figure out if a specific number (or move) is contained within a list versus a priority queue more easily
     List<Integer> legal;
+    
+    //boolean list specifying whether a space on the grid is already occupied; an illegal move is to place a dot on a spot already occupied, so the game ends as soon as that occurs
     ArrayList<Boolean> occupied = new ArrayList<>();
-    ArrayList<ImageView> dots = new ArrayList<>();
-    GridPane leftLayout = new GridPane();
+    
+    ArrayList<ImageView> dots = new ArrayList<>(); //ArrayList containing the actual images of the dots; need 9 instead of just 1 because otherwise they all couldn't appear at the same time
+    
+    GridPane gridLayout = new GridPane();
     int spaceToPlaceDot;
     int from = 0;
     int to;
@@ -82,17 +92,17 @@ public class Trainer extends Application {
         VBox rightLayout = new VBox(20);
         rightLayout.setAlignment(Pos.CENTER);
         rightLayout.getChildren().addAll(playAgainButton, gameReturnToMenuButton);
-        leftLayout.setPrefSize(300, 300);
-        leftLayout.setGridLinesVisible(true);
+        gridLayout.setPrefSize(300, 300);
+        gridLayout.setGridLinesVisible(true);
         for (int i = 0; i < columns; i++) {
             ColumnConstraints colConst = new ColumnConstraints();
             colConst.setPercentWidth(100.0 / columns);
-            leftLayout.getColumnConstraints().add(colConst);
+            gridLayout.getColumnConstraints().add(colConst);
         }
         for (int i = 0; i < rows; i++) {
             RowConstraints rowConst = new RowConstraints();
             rowConst.setPercentHeight(100.0 / rows);
-            leftLayout.getRowConstraints().add(rowConst);
+            gridLayout.getRowConstraints().add(rowConst);
         }
         gameBottomLayout.getChildren().add(movesMade);
         gameBottomLayout.setAlignment(Pos.CENTER);
@@ -165,9 +175,9 @@ public class Trainer extends Application {
             dots.get(i).setFitWidth(100);
         }
         movesMade.setText("Moves made: ");
-        node = leftLayout.getChildren().get(0);
-        leftLayout.getChildren().clear();
-        leftLayout.getChildren().add(0, node);
+        node = gridLayout.getChildren().get(0);
+        gridLayout.getChildren().clear();
+        gridLayout.getChildren().add(0, node);
         from = 0; //Where initial dot will always be placed
         spaceToPlaceDot = 0;
         to = from;
@@ -178,7 +188,7 @@ public class Trainer extends Application {
             for (int i = 0; i < 9; i++) {
                 if(legal.contains(i)) {
                     if(!occupied.get(i)) {
-                        setLeftLayout(i);
+                        setGridLayout(i);
                         allMoves.enqueue(i);
                         occupied.set(i, true);
                         moveCount++;
@@ -200,55 +210,55 @@ public class Trainer extends Application {
                 break;
             }
             else if(spaceToPlaceDot == 0 && occupied.get(0) == false) {
-                setLeftLayout(spaceToPlaceDot);
+                setGridLayout(spaceToPlaceDot);
                 if(spaceToPlaceDot == moveCount - 1 && !previousSuccesses.toString().contains(Integer.toString(spaceToPlaceDot))) {
                     addToSuccess();
                 }
             }
             else if(spaceToPlaceDot == 1 && occupied.get(1) == false) {
-                setLeftLayout(spaceToPlaceDot);
+                setGridLayout(spaceToPlaceDot);
                 if(!previousSuccesses.toString().contains(Integer.toString(spaceToPlaceDot))) {
                     addToSuccess();
                 }
             }
             else if(spaceToPlaceDot == 2 && occupied.get(2) == false) {
-                setLeftLayout(spaceToPlaceDot);
+                setGridLayout(spaceToPlaceDot);
                 if(!previousSuccesses.toString().contains(Integer.toString(spaceToPlaceDot))) {
                     addToSuccess();
                 }
             }
             else if(spaceToPlaceDot == 3 && occupied.get(3) == false) {
-                setLeftLayout(spaceToPlaceDot);
+                setGridLayout(spaceToPlaceDot);
                 if(!previousSuccesses.toString().contains(Integer.toString(spaceToPlaceDot))) {
                     addToSuccess();
                 }
             }
             else if(spaceToPlaceDot == 4 && occupied.get(4) == false) {
-                setLeftLayout(spaceToPlaceDot);
+                setGridLayout(spaceToPlaceDot);
                 if(!previousSuccesses.toString().contains(Integer.toString(spaceToPlaceDot))) {
                     addToSuccess();
                 }
             }
             else if(spaceToPlaceDot == 5 && occupied.get(5) == false) {
-                setLeftLayout(spaceToPlaceDot);
+                setGridLayout(spaceToPlaceDot);
                 if(!previousSuccesses.toString().contains(Integer.toString(spaceToPlaceDot))) {
                     addToSuccess();
                 }
             }
             else if(spaceToPlaceDot == 6 && occupied.get(6) == false) {
-                setLeftLayout(spaceToPlaceDot);
+                setGridLayout(spaceToPlaceDot);
                 if(!previousSuccesses.toString().contains(Integer.toString(spaceToPlaceDot))) {
                     addToSuccess();
                 }
             }
             else if(spaceToPlaceDot == 7 && occupied.get(7) == false) {
-                setLeftLayout(spaceToPlaceDot);
+                setGridLayout(spaceToPlaceDot);
                 if(!previousSuccesses.toString().contains(Integer.toString(spaceToPlaceDot))) {
                     addToSuccess();
                 }
             }
             else if(spaceToPlaceDot == 8 && occupied.get(8) == false){
-                setLeftLayout(spaceToPlaceDot);
+                setGridLayout(spaceToPlaceDot);
                 if(!previousSuccesses.toString().contains(Integer.toString(spaceToPlaceDot))) {
                     addToSuccess();
                 }
@@ -275,23 +285,23 @@ public class Trainer extends Application {
 
     public void setLeftLayout(int n) {
         if(n == 0)
-            leftLayout.add(dots.get(0), 0, 0);
+            gridLayout.add(dots.get(0), 0, 0);
         else if(n == 1)
-            leftLayout.add(dots.get(1), 0, 1);
+            gridLayout.add(dots.get(1), 0, 1);
         else if(n == 2)
-            leftLayout.add(dots.get(2), 0, 2);
+            gridLayout.add(dots.get(2), 0, 2);
         else if(n == 3)
-            leftLayout.add(dots.get(3), 1, 0);
+            gridLayout.add(dots.get(3), 1, 0);
         else if(n == 4)
-            leftLayout.add(dots.get(4), 1, 1);
+            gridLayout.add(dots.get(4), 1, 1);
         else if(n == 5)
-            leftLayout.add(dots.get(5), 1, 2);
+            gridLayout.add(dots.get(5), 1, 2);
         else if(n == 6)
-            leftLayout.add(dots.get(6), 2, 0);
+            gridLayout.add(dots.get(6), 2, 0);
         else if(n == 7)
-            leftLayout.add(dots.get(7), 2, 1);
+            gridLayout.add(dots.get(7), 2, 1);
         else if(n == 8)
-            leftLayout.add(dots.get(8), 2, 2);
+            gridLayout.add(dots.get(8), 2, 2);
 
     }
 }
