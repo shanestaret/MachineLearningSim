@@ -14,7 +14,7 @@ ________________________________________________________________________________
 
 ### **Thoughts & Future Plans**
 
-#### This project was created with the intent to show how machine learning works. Admittedly, at the moment this is a pretty dull example. Instead of showcasing just machine learning and how it works, I'd rather transform this into a "game" of sorts. Maybe change it up so that the computer learns how to play a game like checkers and then a human could actually play against it to see just how much it has learned. Overall, this project does a good job of showcasing machine learning, but it's a bit boring. So ofcourse, I want to improve upon it. Here is a shortlist of what I will do in the future:
+#### This project was created with the intent to show how machine learning works. Admittedly, at the moment this is a pretty dull example. Instead of showcasing just machine learning and how it works, I'd rather transform this into a "game" of sorts. Maybe change it up so that the computer learns how to play a game like checkers and then a human could actually play against it to see just how much it has learned. Overall, this project does a good job of showcasing machine learning, but it's a bit boring. So of course, I want to improve upon it. Here is a shortlist of what I will do in the future:
    * ##### add a delay when the computer is "playing" so that you can visually see the dots being placed
    * ##### add more grid spaces
    * ##### instead of a simulation that displays a computer "learning" how to place dots on a board, teach it how to play checkers
