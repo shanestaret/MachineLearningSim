@@ -23,4 +23,7 @@ ________________________________________________________________________________
    * ##### *possibly* move UI to the web and allow other people to play against the computer that "learned"
 ________________________________________________________________________________________________________________________________
 
-## **Pictures**
+## **GIFs**
+
+#### Showing a playthrough of multiple games until the computer is successful. Notice how I am constantly clicking the "Play Again" button and that the computer changes what it does each play based on what moves it learned were successful in the previous games.
+![GIF of multiple playthroughs until a success](https://media.giphy.com/media/Yll4E2zaj1f5IZnNz9/giphy.gif)
