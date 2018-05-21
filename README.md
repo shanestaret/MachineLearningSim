@@ -21,3 +21,6 @@ ________________________________________________________________________________
    * ##### create classes to house methods so code is more organized and readable
    * ##### improve formatting of UI and add CSS to UI to make it more professional and aesthetic
    * ##### *possibly* move UI to the web and allow other people to play against the computer that "learned"
+________________________________________________________________________________________________________________________________
+
+### **Pictures**
