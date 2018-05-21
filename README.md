@@ -25,5 +25,5 @@ ________________________________________________________________________________
 
 ## **GIFs**
 
-#### Showing a playthrough of multiple games until the computer is successful. Notice how I am constantly clicking the "Play Again" button and that the computer changes what it does each play based on what moves it learned were successful in the previous games.
+#### Showing a playthrough of multiple games until the computer is successful. I am constantly clicking the "Play Again" button and that the computer changes what it does each play based on what moves it learned were successful in the previous games. The GIF's quality is awful, but if you look closely, you can see that the pixels right below the grid keep changing because the moves are different each game. At first, they are completely random. But towards the end, the computer begins to figure out the right moves and the moves become more similar later on in the GIF.
 ![GIF of multiple playthroughs until a success](https://media.giphy.com/media/Yll4E2zaj1f5IZnNz9/giphy.gif)
