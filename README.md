@@ -3,7 +3,7 @@
 ###### This is a link to [my YouTube channel](https://www.youtube.com/channel/UCmQA16swmtPa29pRo9YtRTA?view_as=subscriber), featuring videos of this project on it. Here is a [video](https://www.youtube.com/watch?v=XPnZ38FEr74) that shows the program in action.
 ________________________________________________________________________________________________________________________________
 
-### **Explanation & Design Process**
+## **Explanation & Design Process**
 
 #### Essentially, this is an application that demonstrates how machine learning works. The objective is to "teach" the computer how to place the dots on the 3x3 grid in a specific manner. The specific way the we want the computer to put the dots is from the top left part of the grid, to the center left, to the bottom left, to the top center...to the bottom right. At first, the computer just randomly guesses where to place the dots. The "game" ends as soon as the computer places a dot on top of a space that already has a dot. The computer "wins" as soon as it learns how to place the dots in the correct order. Any further plays after a "win" will always result in a win since the computer finally figured out how to play the game and won't forget. As you continue to let the computer "play", it starts to learn from its past successful moves. So, if a move wasn't declared illegal, then for all successive attempts at the game, it will make that move since it is legal. The computer will always eventually place the dots in a specific order because I have the successful moves stored in a priority queue. This puts a "weight" on each grid space, and the computer learns to place a dot on each grid space from lowest weight to highest weight. The moves the computer makes each "game" are also documented and are stored within a queue. Once the game is over, the queue is unloaded and the moves are printed out in order.
 
@@ -12,7 +12,7 @@ ________________________________________________________________________________
 #### After drawing the UI and figuring out the best way to implement the AI, I actually coded it. I got to admit, the AI was not easy to figure out how to properly implement so that the computer *actually* learned. The concept of machine learning and neural networks are still so extraordinary to me and I would really like to explore these ideas some more.
 ________________________________________________________________________________________________________________________________
 
-### **Thoughts & Future Plans**
+## **Thoughts & Future Plans**
 
 #### This project was created with the intent to show how machine learning works. Admittedly, at the moment this is a pretty dull example. Instead of showcasing just machine learning and how it works, I'd rather transform this into a "game" of sorts. Maybe change it up so that the computer learns how to play a game like checkers and then a human could actually play against it to see just how much it has learned. Overall, this project does a good job of showcasing machine learning, but it's a bit boring. So of course, I want to improve upon it. Here is a shortlist of what I will do in the future:
    * ##### add a delay when the computer is "playing" so that you can visually see the dots being placed
@@ -23,4 +23,4 @@ ________________________________________________________________________________
    * ##### *possibly* move UI to the web and allow other people to play against the computer that "learned"
 ________________________________________________________________________________________________________________________________
 
-### **Pictures**
+## **Pictures**
